@@ -8,6 +8,8 @@ import CritEffectBonus from 'Parser/Core/Modules/Helpers/CritEffectBonus';
 import StatTracker from 'Parser/Core/Modules/StatTracker';
 // import Mastery from './Mastery';
 
+import isAtonement from '../Core/isAtonement';
+
 import { DISC_HEAL_INFO } from './StatValuesSpellInfo';
 // import MasteryEffectiveness from './MasteryEffectiveness';
 
@@ -36,11 +38,6 @@ import { DISC_HEAL_INFO } from './StatValuesSpellInfo';
  * I think an advantage of disregarding all partial overheals is that it gives "top off" heals an effective lower weight than
  * "life saver" heals. Still, this is a decision I will revisit.
  *
- * Stat Tracking -
- * These calculations work best when they use the players actual stats at the moment of a heal. As such, accuracy will be
- * improved when a StatTracker module is implemented, rather than being forced to use the player's stats at the moment of pull.
- * For now, I'm handling the most common big Druid stat buffs manually.
- *
  * Intellect -
  * Math here is straightforward, as spells that scale with int scale directly and linearly with total int. Due to the 'all cloth'
  * bonus, each point of int gained is multiplied by 1.05, which has to be taken into account. The increase in power from
@@ -54,15 +51,13 @@ import { DISC_HEAL_INFO } from './StatValuesSpellInfo';
  *
  * Haste -
  * Calculating the benefit to healing from being able to cast faster is a huge pain in the ass, particularly for disc priests
- * who where atonement application windows matter. However, DoTs tick faster and trinkets/pets attack faster, effectively 
+ * where atonement application times matter. However, DoTs tick faster and some trinkets/pets attack faster, effectively 
  * increasing healing per cast due to Haste. We make the decision to only calculate this benefit, which is fairly simple math:
  * healAmount / (1 + hastePercentage) * hastePercentageFromOneRating
  *
  * Mastery -
  * The mastery calculation is almost the same as Haste's, in that you normalize the heal amount to be the amount it would
- * have been without any of the stat, and then multiply by the percentage gain from one rating. The one wrinkle is that mastery's
- * strength is multiplied by the number of hots on target. Fortunately, we can easily calculate the number of HoTs on the target
- * of each heal.
+ * have been without any of the stat, and then multiply by the percentage gain from one rating.
  *
  * Versatility -
  * This is the same calculation as for haste, healAmount / (1 + versPercentage) * versPercentageFromOneRating.
@@ -122,7 +117,16 @@ class StatWeights extends BaseHealerStatValues {
     if (healVal.overheal) {
       return 0;
     }
+    const target = this.combatants.getEntity(event);
+    if(target === null) {
+      return 0;
+    }
 
+    if (isAtonement(event)) {
+      const bonusFromOneMastery = 1 / this.statTracker.masteryRatingPerPercent;
+      const healingFromOneMastery = bonusFromOneMastery * healVal.effective * this.statTracker.currentMasteryPercentage;
+      return healingFromOneMastery;
+    }
     return 0;
   }
 

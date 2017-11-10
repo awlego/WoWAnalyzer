@@ -49,10 +49,7 @@ class BaseHealerStatValues extends Analyzer {
   _getSpellInfo(event) {
     const spellId = event.ability.guid;
 
-    console.log(`alex test ${spellId}`);
-
     const specSpecific = this.spellInfo[spellId];
-    console.log(`alex test ${specSpecific}`);
     if (specSpecific) {
       return specSpecific;
     }
@@ -150,8 +147,10 @@ class BaseHealerStatValues extends Analyzer {
     if (spellInfo.hasteHpct) {
       this.totalOneHasteHpct += this._adjustGain(this._hasteHpct(eventForWeights, healVal), targetHealthPercentage);
     }
-    if (spellInfo.hasteHpm) {
+    if (spellInfo.hasteHpm == true) {
       this.totalOneHasteHpm += this._adjustGain(this._hasteHpm(eventForWeights, healVal), targetHealthPercentage);
+    } else if (spellInfo.hasteHpm == "maybe") {
+      console.log("yay nothing crashed");
     }
     if (spellInfo.mastery) {
       this.totalOneMastery += this._adjustGain(this._mastery(eventForWeights, healVal), targetHealthPercentage);
