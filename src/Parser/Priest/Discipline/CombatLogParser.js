@@ -45,6 +45,8 @@ import TouchOfTheGrave from './Modules/Spells/TouchOfTheGrave';
 
 import BorrowedTime from './Modules/Spells/Traits/BorrowedTime';
 
+import StatWeights from './Modules/Features/StatWeights';
+
 import { ABILITIES_AFFECTED_BY_HEALING_INCREASES } from './Constants';
 
 class CombatLogParser extends CoreCombatLogParser {
@@ -96,6 +98,8 @@ class CombatLogParser extends CoreCombatLogParser {
     evangelism: Evangelism,
     touchOfTheGrave: TouchOfTheGrave,
     borrowedTime: BorrowedTime,
+
+    statWeights: StatWeights,
   };
 
   generateResults() {

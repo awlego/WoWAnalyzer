@@ -14,7 +14,7 @@ import StatTracker from 'Parser/Core/Modules/StatTracker';
 import CORE_SPELL_INFO from './SpellInfo';
 import STAT, { getName, getClassNameColor, getIcon } from './STAT';
 
-const DEBUG = false;
+const DEBUG = true;
 
 // 5% int bonus from wearing all of the highest armor rating (Leather, Mail, Plate) means each new point of int worth 1.05 vs character sheet int
 export const ARMOR_INT_BONUS = .05;
