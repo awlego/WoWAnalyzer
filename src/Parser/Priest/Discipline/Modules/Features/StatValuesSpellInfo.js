@@ -22,7 +22,7 @@ const DEFAULT_INFO = { // we assume unlisted spells scale with vers only (this w
 };
 
 export const DISC_HEAL_INFO = {
-  [SPELLS.ATONEMENT_HEAL_NON_CRIT.ID]: {
+  [SPELLS.ATONEMENT_HEAL_NON_CRIT.id]: {
     int: true,
     crit: true,
     hasteHpm:true,
@@ -30,7 +30,7 @@ export const DISC_HEAL_INFO = {
     mastery: true,
     vers: true,
   },
-  [SPELLS.ATONEMENT_HEAL_CRIT.ID]: {
+  [SPELLS.ATONEMENT_HEAL_CRIT.id]: {
     int: true,
     crit: true,
     hasteHpm:true,
@@ -38,7 +38,7 @@ export const DISC_HEAL_INFO = {
     mastery: true,
     vers: true,
   },
-  [SPELLS.POWER_WORD_SHIELD.ID]: {
+  [SPELLS.POWER_WORD_SHIELD.id]: {
     int: true,
     crit: true,
     hasteHpm:true,
@@ -46,7 +46,7 @@ export const DISC_HEAL_INFO = {
     mastery: true,
     vers: true,
   },
-  [SPELLS.POWER_WORD_RADIANCE.ID]: {
+  [SPELLS.POWER_WORD_RADIANCE.id]: {
     int: true,
     crit: true,
     hasteHpm:true,
@@ -54,7 +54,7 @@ export const DISC_HEAL_INFO = {
     mastery: true,
     vers: true,
   },
-  [SPELLS.HALO_TALENT.ID]: {
+  [SPELLS.HALO_TALENT.id]: {
     int: true,
     crit: true,
     hasteHpm:true,
@@ -62,7 +62,7 @@ export const DISC_HEAL_INFO = {
     mastery: true,
     vers: true,
   },
-  [SPELLS.PLEA.ID]: {
+  [SPELLS.PLEA.id]: {
     int: true,
     crit: true,
     hasteHpm:true,
@@ -70,7 +70,7 @@ export const DISC_HEAL_INFO = {
     mastery: true,
     vers: true,
   },
-  [SPELLS.SHADOW_MEND.ID]: {
+  [SPELLS.SHADOW_MEND.id]: {
     int: true,
     crit: true,
     hasteHpm:true,
@@ -78,7 +78,7 @@ export const DISC_HEAL_INFO = {
     mastery: true,
     vers: true,
   },
-  [SPELLS.SHARE_IN_THE_LIGHT.ID]: {
+  [SPELLS.SHARE_IN_THE_LIGHT.id]: {
     int: true,
     crit: true,
     hasteHpm:true,

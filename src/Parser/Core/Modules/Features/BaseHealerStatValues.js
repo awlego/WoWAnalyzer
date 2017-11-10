@@ -49,7 +49,10 @@ class BaseHealerStatValues extends Analyzer {
   _getSpellInfo(event) {
     const spellId = event.ability.guid;
 
+    console.log(`alex test ${spellId}`);
+
     const specSpecific = this.spellInfo[spellId];
+    console.log(`alex test ${specSpecific}`);
     if (specSpecific) {
       return specSpecific;
     }
