@@ -8,7 +8,7 @@ import CritEffectBonus from 'Parser/Core/Modules/Helpers/CritEffectBonus';
 import StatTracker from 'Parser/Core/Modules/StatTracker';
 // import Mastery from './Mastery';
 
-import SPELL_INFO from './StatValuesSpellInfo';
+import { DISC_HEAL_INFO } from './StatValuesSpellInfo';
 // import MasteryEffectiveness from './MasteryEffectiveness';
 
 
@@ -92,7 +92,7 @@ class StatWeights extends BaseHealerStatValues {
     // mastery: Mastery,
   };
 
-  spellInfo = SPELL_INFO;
+  spellInfo = DISC_HEAL_INFO;
 
   _getCritChance(event) {
     const critChanceBreakdown = super._getCritChance(event);
