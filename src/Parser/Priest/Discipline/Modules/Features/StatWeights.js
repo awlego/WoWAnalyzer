@@ -56,8 +56,9 @@ import { DISC_HEAL_INFO } from './StatValuesSpellInfo';
  * healAmount / (1 + hastePercentage) * hastePercentageFromOneRating
  *
  * Mastery -
- * The mastery calculation is almost the same as Haste's, in that you normalize the heal amount to be the amount it would
- * have been without any of the stat, and then multiply by the percentage gain from one rating.
+ * Mastery calculations are pretty straight forward. We already know the amount we got from mastery healing, we just need to 
+ * figure out how much a single point was worth.
+ * healAmount * (masteryPercentage / masteryRatingPerPercentage)
  *
  * Versatility -
  * This is the same calculation as for haste, healAmount / (1 + versPercentage) * versPercentageFromOneRating.

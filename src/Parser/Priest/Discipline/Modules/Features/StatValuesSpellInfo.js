@@ -25,14 +25,14 @@ export const DISC_HEAL_INFO = {
   [SPELLS.ATONEMENT_HEAL_NON_CRIT.id]: {
     int: true,
     crit: true,
-    hasteHpm: "maybe",
+    hasteHpm: "maybe", // dmg dots scale with haste, power of the dark side scales with haste since dots do, mindbender
     hasteHpct: true,
     mastery: true,
     vers: true,
   },
   [SPELLS.ATONEMENT_HEAL_CRIT.id]: {
     int: true,
-    crit: true,
+    crit: true, // we adjust so we double double value crit in the statweights section
     hasteHpm: "maybe",
     hasteHpct: true,
     mastery: true,
@@ -41,7 +41,7 @@ export const DISC_HEAL_INFO = {
   [SPELLS.POWER_WORD_SHIELD.id]: {
     int: true,
     crit: true,
-    hasteHpm: true,
+    hasteHpm: true, // cd scales with haste
     hasteHpct: true,
     mastery: false,
     vers: true,
@@ -49,7 +49,7 @@ export const DISC_HEAL_INFO = {
   [SPELLS.POWER_WORD_RADIANCE.id]: {
     int: true,
     crit: true,
-    hasteHpm: true,
+    hasteHpm: false,
     hasteHpct: true,
     mastery: false,
     vers: true,
@@ -57,15 +57,15 @@ export const DISC_HEAL_INFO = {
   [SPELLS.PENANCE.id]: {
     int: true,
     crit: true,
-    hasteHpm: true,
-    hasteHpct: true,
+    hasteHpm: false,
+    hasteHpct: false,
     mastery: false,
     vers: true,
   },
   [208771]: { //(SPELLS.SMITE.id]: {
     int: true,
     crit: true,
-    hasteHpm: true,
+    hasteHpm: false,
     hasteHpct: true,
     mastery: false,
     vers: true,
@@ -73,7 +73,7 @@ export const DISC_HEAL_INFO = {
   [SPELLS.HALO_TALENT.id]: {
     int: true,
     crit: true,
-    hasteHpm: true,
+    hasteHpm: false,
     hasteHpct: true,
     mastery: false,
     vers: true,
@@ -81,7 +81,7 @@ export const DISC_HEAL_INFO = {
   [SPELLS.PLEA.id]: {
     int: true,
     crit: true,
-    hasteHpm: true,
+    hasteHpm: false,
     hasteHpct: true,
     mastery: false,
     vers: true,
@@ -89,7 +89,7 @@ export const DISC_HEAL_INFO = {
   [SPELLS.SHADOW_MEND.id]: {
     int: true,
     crit: true,
-    hasteHpm: true,
+    hasteHpm: false,
     hasteHpct: true,
     mastery: false,
     vers: true,
@@ -97,7 +97,7 @@ export const DISC_HEAL_INFO = {
   [SPELLS.SHARE_IN_THE_LIGHT.id]: {
     int: true,
     crit: true,
-    hasteHpm: true,
+    hasteHpm: true, // pws cd reduces with haste
     hasteHpct: true,
     mastery: false,
     vers: true,
