@@ -66,7 +66,7 @@ export const DISC_HEAL_INFO = {
     int: true,
     crit: true,
     hasteHpm: false,
-    hasteHpct: true,
+    hasteHpct: true, // maybe? this actually depends on target's swing timer... unless you are swapping targets every cast in which case haste DOES increase the HPS.
     mastery: false,
     vers: true,
   },
