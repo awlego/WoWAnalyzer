@@ -5,6 +5,7 @@ import ChangelogTab from 'Main/ChangelogTab';
 import ChangelogTabTitle from 'Main/ChangelogTabTitle';
 import Tab from 'Main/Tab';
 import Talents from 'Main/Talents';
+import TimelineTab from 'Main/Timeline/TimelineTab';
 
 import { formatNumber, formatPercentage } from 'common/format';
 
@@ -46,10 +47,12 @@ import DarkmoonDeckPromises from './Modules/Items/DarkmoonDeckPromises';
 import AmalgamsSeventhSpine from './Modules/Items/AmalgamsSeventhSpine';
 import ArchiveOfFaith from './Modules/Items/ArchiveOfFaith';
 import BarbaricMindslaver from './Modules/Items/BarbaricMindslaver';
+import CharmOfTheRisingTide from './Modules/Items/CharmOfTheRisingTide';
 import SeaStar from './Modules/Items/SeaStarOfTheDepthmother';
 import DeceiversGrandDesign from './Modules/Items/DeceiversGrandDesign';
 import PrePotion from './Modules/Items/PrePotion';
 import LegendaryUpgradeChecker from './Modules/Items/LegendaryUpgradeChecker';
+import LegendaryCountChecker from './Modules/Items/LegendaryCountChecker';
 import GnawedThumbRing from './Modules/Items/GnawedThumbRing';
 import VialOfCeaselessToxins from './Modules/Items/VialOfCeaselessToxins';
 import SpecterOfBetrayal from './Modules/Items/SpecterOfBetrayal';
@@ -63,6 +66,7 @@ import UmbralMoonglaives from './Modules/Items/UmbralMoonglaives';
 // T21 Healing trinkets
 import TarratusKeystone from './Modules/Items/TarratusKeystone';
 import HighFathersMachination from './Modules/Items/HighfathersMachination';
+import EonarsCompassion from './Modules/Items/EonarsCompassion';
 // Shared Buffs
 import Concordance from './Modules/Spells/Concordance';
 import VantusRune from './Modules/Spells/VantusRune';
@@ -134,10 +138,12 @@ class CombatLogParser {
     darkmoonDeckPromises: DarkmoonDeckPromises,
     prePotion: PrePotion,
     legendaryUpgradeChecker: LegendaryUpgradeChecker,
+    legendaryCountChecker: LegendaryCountChecker,
     gnawedThumbRing: GnawedThumbRing,
     // Tomb trinkets:
     archiveOfFaith: ArchiveOfFaith,
     barbaricMindslaver: BarbaricMindslaver,
+    charmOfTheRisingTide: CharmOfTheRisingTide,
     seaStar: SeaStar,
     deceiversGrandDesign: DeceiversGrandDesign,
     vialCeaslessToxins: VialOfCeaselessToxins,
@@ -150,6 +156,7 @@ class CombatLogParser {
     // T21 Healing Trinkets
     tarratusKeystone: TarratusKeystone,
     highfathersMachinations: HighFathersMachination,
+    eonarsCompassion : EonarsCompassion,
 
     // Concordance of the Legionfall
     concordance: Concordance,
@@ -411,6 +418,21 @@ class CombatLogParser {
         render: () => (
           <Tab title="Talents">
             <Talents combatant={this.modules.combatants.selected} />
+          </Tab>
+        ),
+      },
+      {
+        title: 'Timeline',
+        url: 'timeline',
+        order: 2,
+        render: () => (
+          <Tab title="Timeline">
+            <TimelineTab
+              start={this.fight.start_time}
+              end={this.currentTimestamp}
+              historyBySpellId={this.modules.spellHistory.historyBySpellId}
+              castEfficiency={this.modules.castEfficiency}
+            />
           </Tab>
         ),
       },
