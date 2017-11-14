@@ -9,6 +9,7 @@ import StatTracker from 'Parser/Core/Modules/StatTracker';
 // import Mastery from './Mastery';
 
 import isAtonement from '../Core/isAtonement';
+import AtonementSource from './AtonementSource';
 
 import { DISC_HEAL_INFO } from './StatValuesSpellInfo';
 // import MasteryEffectiveness from './MasteryEffectiveness';
@@ -54,6 +55,8 @@ import { DISC_HEAL_INFO } from './StatValuesSpellInfo';
  * where atonement application times matter. However, DoTs tick faster and some trinkets/pets attack faster, effectively 
  * increasing healing per cast due to Haste. We make the decision to only calculate this benefit, which is fairly simple math:
  * healAmount / (1 + hastePercentage) * hastePercentageFromOneRating
+ * 
+ * It also decreases the CD of PWS... calculating the extra PWS calculated is bit hard.
  *
  * Mastery -
  * Mastery calculations are pretty straight forward. We already know the amount we got from mastery healing, we just need to 
@@ -86,9 +89,12 @@ class StatWeights extends BaseHealerStatValues {
     critEffectBonus: CritEffectBonus,
     statTracker: StatTracker,
     // mastery: Mastery,
+    atonementSource: AtonementSource,
   };
 
   spellInfo = DISC_HEAL_INFO;
+
+  counter = 0;
 
   _getCritChance(event) {
     const critChanceBreakdown = super._getCritChance(event);
@@ -108,10 +114,26 @@ class StatWeights extends BaseHealerStatValues {
   }
 
   _hasteHpm(event, healVal) {
-    if (healVal.overheal) {
-      return 0;
+    // if (healVal.overheal) {
+    //   return 0;
+    // }
+    
+    if ((event.ability.guid === SPELLS.ATONEMENT_HEAL_NON_CRIT.id) || (event.ability.guid === SPELLS.ATONEMENT_HEAL_CRIT.id)) {
+      // if we had an atonement heal, check if it is from PtW or mindbender/shadowfiend/other haste scaling spells
+      //console.log(`we had an atonement heal event: ${this.atonementSource.atonementDamageSource.ability.guid}`);
+      if (this.atonementSource.atonementDamageSource.ability.guid === SPELLS.PURGE_THE_WICKED_TALENT.id) {
+        this.counter = this.counter + 1;
+        console.log(`we had a purge proc'd atonement healing event #${this.counter}`);
+        return super._hasteHpm(event, healVal);
+      } else {
+        return 0;
+      }
+    } else {
+      if (healVal.overheal) {
+        return 0;
+      }
+      return super._hasteHpm(event, healVal);
     }
-    return super._hasteHpm(event, healVal);
   }
 
   _mastery(event, healVal) {

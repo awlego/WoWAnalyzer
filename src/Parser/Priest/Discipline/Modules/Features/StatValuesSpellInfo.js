@@ -25,7 +25,7 @@ export const DISC_HEAL_INFO = {
   [SPELLS.ATONEMENT_HEAL_NON_CRIT.id]: {
     int: true,
     crit: true,
-    hasteHpm: "maybe", // dmg dots scale with haste, power of the dark side scales with haste since dots do, mindbender
+    hasteHpm: true, // dmg dots scale with haste, power of the dark side scales with haste since dots do, mindbender
     hasteHpct: true,
     mastery: true,
     vers: true,
@@ -33,7 +33,7 @@ export const DISC_HEAL_INFO = {
   [SPELLS.ATONEMENT_HEAL_CRIT.id]: {
     int: true,
     crit: true, // we adjust so we double double value crit in the statweights section
-    hasteHpm: "maybe",
+    hasteHpm: true,
     hasteHpct: true,
     mastery: true,
     vers: true,
@@ -41,7 +41,7 @@ export const DISC_HEAL_INFO = {
   [SPELLS.POWER_WORD_SHIELD.id]: {
     int: true,
     crit: true,
-    hasteHpm: true, // cd scales with haste
+    hasteHpm: false, // cd scales with haste so this is true in some sense
     hasteHpct: true,
     mastery: false,
     vers: true,

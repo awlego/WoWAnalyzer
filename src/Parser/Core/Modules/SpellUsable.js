@@ -80,14 +80,14 @@ class SpellUsable extends Analyzer {
         const remainingCooldown = this.cooldownRemaining(spellId, timestamp);
         if (remainingCooldown > 50) {
           // No need to report if it was expected to reset within 50ms, as latency can cause this fluctuation.
-          console.error(
-            formatMilliseconds(this.owner.fightDuration),
-            'SpellUsable',
-            spellName(spellId), spellId, `was cast while already marked as on cooldown. It probably either has multiple charges, can be reset early, cooldown can be reduced, the configured CD is invalid, the Haste is too low, the combatlog records multiple casts per player cast (e.g. ticks of a channel) or this is a latency issue.`,
-            'time passed:', (timestamp - this._currentCooldowns[spellId].start),
-            'cooldown remaining:', remainingCooldown,
-            'expectedDuration:', this._currentCooldowns[spellId].expectedDuration
-          );
+          // console.error(
+          //   formatMilliseconds(this.owner.fightDuration),
+          //   'SpellUsable',
+          //   spellName(spellId), spellId, `was cast while already marked as on cooldown. It probably either has multiple charges, can be reset early, cooldown can be reduced, the configured CD is invalid, the Haste is too low, the combatlog records multiple casts per player cast (e.g. ticks of a channel) or this is a latency issue.`,
+          //   'time passed:', (timestamp - this._currentCooldowns[spellId].start),
+          //   'cooldown remaining:', remainingCooldown,
+          //   'expectedDuration:', this._currentCooldowns[spellId].expectedDuration
+          // );
         }
         this.endCooldown(spellId, false, timestamp);
         this.beginCooldown(spellId, timestamp);

@@ -43,7 +43,9 @@ class Estel extends Analyzer {
     const spellId = event.ability.guid;
 
     if (spellId === SPELLS.ESTEL_DEJAHNAS_INSPIRATION_BUFF.id) {
-      console.log(`num atonements found: ${this.atonementModule.numAtonementsActive}`);
+      if (DEBUG) {
+        console.log(`num atonements found: ${this.atonementModule.numAtonementsActive}`);
+      }
       this.lastHasteValue = this.atonementModule.numAtonementsActive;
       this.lastBuffTimestamp = event.timestamp;
     }
