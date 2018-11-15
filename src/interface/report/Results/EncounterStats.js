@@ -272,6 +272,26 @@ class EncounterStats extends React.PureComponent {
                   </div>
                 ))}
               </div>
+              <div className="col-md-6">
+                <div className="row" style={{ marginBottom: '2em' }}>
+                  <div className="col-md-12">
+                    <h2>Most used Talents 2</h2>
+                  </div>
+                </div>
+                {this.state.mostUsedTalents.map((row, index) => (
+                  <div className="row" key={index} style={{ marginBottom: 15, paddingLeft: 20 }}>
+                    <div className="col-lg-1 col-xs-2" style={{ lineHeight: '3em', textAlign: 'right' }}>{rows[index]}</div>
+                    {Object.keys(row).sort((a, b) => row[b] - row[a]).map((talent, talentIndex) => (
+                      <div key={talentIndex} className="col-lg-2 col-xs-3" style={{ textAlign: 'center' }}>
+                        <SpellLink id={Number(talent)} icon={false}>
+                          <SpellIcon style={{ width: '3em', height: '3em' }} id={Number(talent)} noLink />
+                        </SpellLink>
+                        <span style={{ textAlign: 'center', display: 'block' }}>{formatPercentage(row[talent] / this.amountOfParses, 0)}%</span>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

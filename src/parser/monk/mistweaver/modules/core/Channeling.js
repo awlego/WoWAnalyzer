@@ -1,6 +1,7 @@
 import SPELLS from 'common/SPELLS';
 import CoreChanneling from 'parser/shared/modules/Channeling';
 
+const debug = false;
 /**
  * Crackling Jade Lightning don't reveal in the combatlog when channeling begins and ends, this fabricates the required events so that ABC can handle it properly.
  * Combatlog event order is messy, it often looks like:
@@ -25,7 +26,7 @@ class Channeling extends CoreChanneling {
   cancelChannel(event, ability) {
     if (this.isChannelingSpell(SPELLS.CRACKLING_JADE_LIGHTNING.id) || this.isChannelingSpell(SPELLS.ESSENCE_FONT.id) || this.isChannelingSpell(SPELLS.SOOTHING_MIST.id)) {
       // If a channeling spell is "canceled" it was actually just ended, so if it looks canceled then instead just mark it as ended
-      this.log('Marking', this._currentChannel.ability.name, 'as ended since we started casting something else');
+      debug && this.log('Marking', this._currentChannel.ability.name, 'as ended since we started casting something else');
       this.endChannel(event);
     } else {
       super.cancelChannel(event, ability);

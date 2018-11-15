@@ -60,9 +60,10 @@ import UpliftedSpirits from './modules/spells/azeritetraits/UpliftedSpirits';
 
 // Mana Tracker
 import MistweaverHealingEfficiencyDetails from './modules/features/MistweaverHealingEfficiencyDetails';
-// import HealingEfficiencyDetails from '../../core/healingEfficiency/HealingEfficiencyDetails';
 import HealingEfficiencyTracker from './modules/features/MistweaverHealingEfficiencyTracker';
 import ManaTracker from '../../core/healingEfficiency/ManaTracker';
+
+import MistweaverEncounterPanel from './modules/features/MistweaverEncounterPanel';
 
 import { ABILITIES_AFFECTED_BY_HEALING_INCREASES } from './constants';
 
@@ -94,7 +95,7 @@ class CombatLogParser extends CoreCombatLogParser {
     essenceFont: EssenceFont,
     thunderFocusTea: ThunderFocusTea,
     envelopingMists: EnvelopingMists,
-    soothingMist: SoothingMist, // Removed as this needs to be reworked with updated Soothing Mist Spell in BfA
+    soothingMist: SoothingMist,
     vivify: Vivify,
     renewingMist: RenewingMist,
     lifeCocoon: LifeCocoon,
@@ -119,6 +120,9 @@ class CombatLogParser extends CoreCombatLogParser {
     manaTracker: ManaTracker,
     hpmDetails: MistweaverHealingEfficiencyDetails,
     hpmTracker: HealingEfficiencyTracker,
+
+    // Encounter Tab
+    encounterPanel: MistweaverEncounterPanel,
   };
 
   generateResults(...args) {

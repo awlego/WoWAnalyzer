@@ -41,7 +41,7 @@ import TotalDowntime from '../shared/modules/downtime/TotalDowntime';
 import DistanceMoved from '../shared/modules/others/DistanceMoved';
 
 import CharacterTab from '../shared/modules/features/CharacterTab';
-import EncounterPanel from '../shared/modules/features/EncounterPanel';
+// import EncounterPanel from '../shared/modules/features/EncounterPanel';
 // Tabs
 import TimelineTab from '../shared/modules/features/TimelineTab';
 import ManaTab from '../shared/modules/features/ManaTab';
@@ -171,7 +171,7 @@ class CombatLogParser {
 
     // Tabs
     characterTab: CharacterTab,
-    encounterPanel: EncounterPanel,
+    // encounterPanel: EncounterPanel,
     timelineTab: TimelineTab,
     manaTab: ManaTab,
     raidHealthTab: RaidHealthTab,

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Doughnut as DoughnutChart } from 'react-chartjs-2';
 
 import SPELLS from 'common/SPELLS';
@@ -58,34 +60,7 @@ class ThunderFocusTea extends Analyzer {
     });
   }
 
-  chart(items) {
-    return (
-      <DoughnutChart
-        data={{
-          datasets: [{
-            data: items.map(item => item.value),
-            backgroundColor: items.map(item => item.color),
-            borderColor: '#666',
-            borderWidth: 1.5,
-          }],
-          labels: items.map(item => item.label),
-        }}
-        options={{
-          legend: {
-            display: false,
-          },
-          tooltips: {
-            bodyFontSize: 8,
-          },
-          cutoutPercentage: 45,
-          animation: false,
-          responsive: false,
-        }}
-        width={CHART_SIZE}
-        height={CHART_SIZE}
-      />
-    );
-  }
+  
 
   castsTftRsk = 0;
   castsTftViv = 0;
@@ -144,45 +119,7 @@ class ThunderFocusTea extends Analyzer {
     }
   }
 
-  tftCastRatioChart() {
-    const items = [
-      {
-        color: '#00b159',
-        label: 'Vivify',
-        spellId: SPELLS.VIVIFY.id,
-        value: this.castsTftViv,
-      },
-      {
-        color: '#00aedb',
-        label: 'Renewing Mist',
-        spellId: SPELLS.RENEWING_MIST.id,
-        value: this.castsTftRem,
-      },
-      {
-        color: '#f37735',
-        label: 'Enveloping Mists',
-        spellId: SPELLS.ENVELOPING_MIST.id,
-        value: this.castsTftEnm,
-      },
-      {
-        color: '#ffc425',
-        label: 'Rising Sun Kick',
-        spellId: SPELLS.RISING_SUN_KICK.id,
-        value: this.castsTftRsk,
-      },
-    ];
-
-    return (
-      <div className="flex">
-        <div className="flex-sub" style={{ paddingRight: 12 }}>
-          {this.chart(items)}
-        </div>
-        <div className="flex-main" style={{ fontSize: '80%', paddingTop: 3 }}>
-          {this.legend(items, this.castsUnderTft)}
-        </div>
-      </div>
-    );
-  }
+  
 
   on_finished() {
     if (this.ftActive) {
